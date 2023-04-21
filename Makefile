@@ -31,7 +31,7 @@ update:
 
 .PHONY: clean
 clean:
-	rm -f skenvy-pretty-ts-errors-*.tgz
+	rm -f pretty-ts-errors-*.tgz
 	npm run clean
 
 .PHONY: test
@@ -49,4 +49,4 @@ build: clean test lint
 
 .PHONY: publish
 publish:
-	npm publish --access=public skenvy-pretty-ts-errors-*.tgz
+	npm publish --access=public pretty-ts-errors-*.tgz
