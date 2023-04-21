@@ -71,7 +71,7 @@ jobs:
       uses: actions/upload-artifact@83fd05a356d7e2593de66fc9913b3002723633cb # v3.1.1
       with:
         name: Package
-        path: pretty-ts-errors-*.tgz
+        path: skenvy-pretty-ts-errors-*.tgz
         if-no-files-found: error
   release:
     name: Release 🚰
@@ -91,7 +91,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         export VER=$(grep package.json -e "\"version\":" | cut -d \" -f 4)
-        gh release create v$VER "$(find . | grep -e pretty-ts-errors-*\.tgz)#Package" --generate-notes -t "v$VER"
+        gh release create v$VER "$(find . | grep -e skenvy-pretty-ts-errors-*\.tgz)#Package" --generate-notes -t "v$VER"
   publish-github:
     name: Publish GitHub 🐱‍👤
     needs: [release]
@@ -110,6 +110,7 @@ jobs:
       with:
         node-version: 17.6.0
         registry-url: 'https://npm.pkg.github.com'
+        scope: '@skenvy'
     - name: 📦 Publish
       run: make publish
       env:
@@ -130,6 +131,7 @@ jobs:
       with:
         node-version: 17.6.0
         registry-url: 'https://registry.npmjs.org'
+        scope: '@skenvy'
     - name: 📦 Publish
       run: make publish
       env:
